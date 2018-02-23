@@ -1,0 +1,2 @@
+[lab]
+172.16.51.73 ansible_user=test ansible_sudo_pass=test ansible_ssh_pass=test

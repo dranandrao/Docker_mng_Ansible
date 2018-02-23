@@ -1,0 +1,22 @@
+---
+- name: Build an image with the docker_image module
+  hosts: lab
+  tasks:
+    - copy:
+        src: mysql
+        dest: /tmp
+        mode: 0644
+        
+    - name: build the image
+      docker_image: >
+        name=ubuntu
+        tag=mysql
+        path=/tmp/mysql
+        state=present
+
+    - name: run the site in a docker container
+      docker:
+        name: site1
+        image: "ubuntu:mysql"
+        state: reloaded
+        publish_all_ports: yes
